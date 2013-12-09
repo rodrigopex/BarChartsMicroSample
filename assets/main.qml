@@ -21,10 +21,6 @@ Page {
         BarChart {
             id: chart
             title: qsTr("Bar Chart Micro Sample")
-            topPadding: 20
-            leftPadding: 20
-            rightPadding: 20
-            bottomPadding: 20
             onCreationCompleted: {
                 chart.values = [ {
                         "title": "10/12",
@@ -51,17 +47,31 @@ Page {
                         "title": "16/12",
                         "value": 300
                     } ]
-                chart.render()
+            }
+            contextActions: ActionSet {
+                title: "Chart actions"
+                DeleteActionItem {
+                    title: "Clear chart data"
+                    onTriggered: {
+                        chart.clearData()
+                    }
+                }
             }
         }
         Container {
             bottomPadding: 20
+            leftPadding: 20
+            rightPadding: 20
             horizontalAlignment: HorizontalAlignment.Center
+            layout: StackLayout {
+                orientation: LayoutOrientation.LeftToRight
+            }
             Button {
-                text: "Generate values and plot"
+                text: "Generate and plot"
                 onClicked: {
                     var v = []
-                    for (var i = 0; i < 7; ++ i) {
+                    var qtt = Math.round(10 * Math.random()) + 2
+                    for (var i = 0; i < qtt; ++ i) {
                         v.push({
                                 "title": (10 + i) + "/12",
                                 "value": Math.round(800 * Math.random())
@@ -69,7 +79,12 @@ Page {
                         
                     }
                     chart.values = v
-                    chart.render()
+                }
+            }
+            Button {
+                text: "Clear chart"
+                onClicked: {
+                    chart.clearData()
                 }
             }
         }
