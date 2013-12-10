@@ -1,5 +1,7 @@
 1
-3
+5
 Bar.qml
 BarChart.qml
+BarChartList.qml
+BarForList.qml
 main.qml

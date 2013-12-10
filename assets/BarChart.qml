@@ -32,7 +32,6 @@ Container {
     ]
     onValuesChanged: {
         self.render()
-
     }
     function setData(v) {
         values = v

@@ -20,7 +20,7 @@ Page {
     Container {
         BarChart {
             id: chart
-            title: qsTr("Bar Chart Micro Sample")
+            title: qsTr("Bar Chart Container based")
             onCreationCompleted: {
                 chart.values = [ {
                         "title": "10/12",
@@ -58,7 +58,14 @@ Page {
                 }
             }
         }
+        Divider {
+        }
+        BarChartList {
+            id: chartList
+            title: qsTr("Bar Chart List based")
+        }
         Container {
+            topPadding: 20
             bottomPadding: 20
             leftPadding: 20
             rightPadding: 20
@@ -70,7 +77,7 @@ Page {
                 text: "Generate and plot"
                 onClicked: {
                     var v = []
-                    var qtt = Math.round(10 * Math.random()) + 2
+                    var qtt = Math.round(14 * Math.random()) + 2
                     for (var i = 0; i < qtt; ++ i) {
                         v.push({
                                 "title": (10 + i) + "/12",
@@ -79,12 +86,14 @@ Page {
                         
                     }
                     chart.values = v
+                    chartList.setData(v)
                 }
             }
             Button {
                 text: "Clear chart"
                 onClicked: {
                     chart.clearData()
+                    chartList.clear()
                 }
             }
         }
